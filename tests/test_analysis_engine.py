@@ -38,6 +38,10 @@ class AnalysisServiceEngineTests(unittest.TestCase):
         self.assertEqual(results[0].sentences, 1)
         self.assertEqual(results[1].words, 2)
 
+    def test_analyze_many_rejects_non_string_entries(self) -> None:
+        with self.assertRaises(TypeError):
+            self.engine.analyze_many(["valid", 123])  # type: ignore[list-item]
+
 
 if __name__ == "__main__":
     unittest.main()
